@@ -96,12 +96,26 @@ Convert the model weights into ggml format
 
 ##### Windows
 
+7B model
+```commandline
+cd minigpt4
+python convert.py C:\pretrained_minigpt4_7b.pth --ftype=f16
+```
+
+13B model
 ```commandline
 cd minigpt4
 python convert.py C:\pretrained_minigpt4.pth --ftype=f16
 ```
 
 ##### Linux / MacOS
+
+7B model
+```sh
+python convert.py ~/Downloads/pretrained_minigpt4_7b.pth --outtype f16
+```
+
+13B model
 ```sh
 python convert.py ~/Downloads/pretrained_minigpt4.pth --outtype f16
 ```
@@ -140,3 +154,36 @@ Quantize the model
 ```sh
 python quanitize <path-to-model> <output-model> Q4_1
 ```
+
+#### 5. Running
+
+Test if minigpt4 works by calling the following, replacing `minigpt4-13B-f16.bin` and `ggml-vicuna-13B-v0-q5_k.bin` with your respective models
+
+```sh
+cd minigpt4
+python minigpt4_library.py minigpt4-13B-f16.bin ggml-vicuna-13B-v0-q5_k.bin
+```
+
+##### Webui
+
+Install the requirements for the webui
+
+```sh
+pip install -r requirements.txt
+```
+
+Then, run the webui, replacing `minigpt4-13B-f16.bin` and `ggml-vicuna-13B-v0-q5_k.bin` with your respective models
+
+```sh
+python webui.py minigpt4-13B-f16.bin ggml-vicuna-13B-v0-q5_k.bin
+```
+
+The output should contain something like the following:
+
+```sh
+Running on local URL:  http://127.0.0.1:7860
+
+To create a public link, set `share=True` in `launch()`.
+```
+
+Go to `http://127.0.0.1:7860` in your browser and you should be able to interact with the webui.
