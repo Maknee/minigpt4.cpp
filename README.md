@@ -76,6 +76,8 @@ cmake --build . --config Release
 
 Pre-quantized models are avaliable on Hugging Face ~ [7B](https://huggingface.co/datasets/maknee/minigpt4-7b-ggml/tree/main) or [13B](https://huggingface.co/datasets/maknee/minigpt4-13b-ggml/tree/main).
 
+Recommended for reliable results, but slow inference speed: [minigpt4-13B-f16.bin](https://huggingface.co/datasets/maknee/minigpt4-13b-ggml/blob/main/minigpt4-13B-f16.bin)
+
 #### Option 2: Convert and quantize PyTorch model
 
 **Requirements**: [Python 3.x](https://www.python.org/downloads/) and [PyTorch](https://pytorch.org/get-started/locally/).
@@ -127,6 +129,8 @@ python convert.py ~/Downloads/pretrained_minigpt4.pth --outtype f16
 #### Option 1: Download pre-quantized vicuna-v0 model
 
 Pre-quantized models are avaliable on [Hugging Face](https://huggingface.co/datasets/maknee/ggml-vicuna-v0-quantized/tree/main)
+
+Recommended for reliable results and decent inference speed: [ggml-vicuna-13B-v0-q5_k.bin](https://huggingface.co/datasets/maknee/ggml-vicuna-v0-quantized/blob/main/ggml-vicuna-13B-v0-q5_k.bin)
 
 #### Option 2: Convert and quantize vicuna-v0 model
 
