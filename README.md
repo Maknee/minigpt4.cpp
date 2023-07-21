@@ -85,6 +85,7 @@ Clone the [MiniGPT-4](https://github.com/Vision-CAIR/MiniGPT-4) repository and p
 ```sh
 cd minigpt4
 git clone https://github.com/Vision-CAIR/MiniGPT-4.git
+cd MiniGPT-4
 conda env create -f environment.yml
 conda activate minigpt4
 ```
