@@ -54,7 +54,7 @@ def upload_image(image, history):
     minigpt4_chatbot.upload_image(image.convert('RGB'))
     return gr.update(interactive=False), gr.update(interactive=True, placeholder='Type and press Enter'), gr.update(value="Start Chatting", interactive=False), history
 
-def start():
+def start(share: bool):
     with gr.Blocks() as demo:
         gr.Markdown(title)
         gr.Markdown(description)
@@ -97,16 +97,18 @@ def start():
         )
         # stop.click(fn=None, inputs=None, outputs=None, cancels=[submit_click_event, message_submit_event], queue=False)
 
-    demo.launch(enable_queue=True)
+    demo.launch(enable_queue=True, share=share)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Test loading minigpt4')
     parser.add_argument('model_path', help='Path to model file')
     parser.add_argument('llm_model_path', help='Path to llm model file')
+    parser.add_argument('--share_link', help='Share link publicly', default=False)
     args = parser.parse_args()
 
     model_path = args.model_path
     llm_model_path = args.llm_model_path
+    share_link = args.share_link
 
     if not Path(model_path).exists():
         print(f'Model does not exist: {model_path}')
@@ -117,4 +119,4 @@ if __name__ == "__main__":
         exit(1)
 
     minigpt4_chatbot = minigpt4_library.MiniGPT4ChatBot(model_path, llm_model_path, verbosity=minigpt4_library.Verbosity.SILENT)
-    start()
+    start(share_link)
