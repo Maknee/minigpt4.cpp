@@ -1,6 +1,7 @@
 # minigpt4.cpp
 
 <a href='https://huggingface.co/spaces/maknee/minigpt4.cpp'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue'>
+[![Quickstart in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Maknee/minigpt4.cpp/blob/master/minigpt4/colab_webui.ipynb)
 
 Inference of [MiniGPT4](https://github.com/Vision-CAIR/MiniGPT-4) in pure C/C++.
 
