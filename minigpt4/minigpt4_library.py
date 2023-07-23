@@ -88,6 +88,8 @@ class MiniGPT4SharedLibrary:
         """
 
         self.library = ctypes.cdll.LoadLibrary(shared_library_path)
+        if self.library is None:
+            raise RuntimeError(f'Failed to load shared library from {shared_library_path}')
 
         self.library.minigpt4_model_load.argtypes = [
             CHAR_PTR, # const char *path
@@ -549,6 +551,9 @@ def load_library() -> MiniGPT4SharedLibrary:
         f'../build/{file_name}',
         # Search relative to this file
         str(repo_root_dir / 'bin' / 'Release' / file_name),
+        str(repo_root_dir / 'build' / 'bin' / 'Release' / file_name),
+        str(repo_root_dir / 'bin' / 'Debug' / file_name),
+        str(repo_root_dir / 'build' / 'bin' / 'Debug' / file_name),
         # Fallback
         str(repo_root_dir / file_name),
         str(cwd / file_name)
