@@ -85,7 +85,7 @@ jobs:
       - name: Pack artifacts
         id: pack_artifacts
         run: |
-          zip -j minigpt4-${{ env.BRANCH_NAME }}-${{ steps.commit.outputs.short }}-${{ steps.system-info.outputs.OS_TYPE }}-${{ steps.system-info.outputs.OS_NAME }}-${{ steps.system-info.outputs.OS_VERSION }}-${{ matrix.build }}-${{ steps.system-info.outputs.CPU_ARCH }}.zip ./build/libminigpt4.so ./build/bin/main ./minigpt4/minigpt4_library.py ./minigpt4/webui.py
+          zip -j minigpt4-${{ env.BRANCH_NAME }}-${{ steps.commit.outputs.short }}-${{ steps.system-info.outputs.OS_TYPE }}-${{ steps.system-info.outputs.OS_NAME }}-${{ steps.system-info.outputs.OS_VERSION }}-${{ matrix.build }}-${{ steps.system-info.outputs.CPU_ARCH }}.zip ./build/libminigpt4.so ./build/bin/main ./minigpt4/minigpt4_library.py ./minigpt4/webui.py ./minigpt4/requirements.txt
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -175,7 +175,7 @@ jobs:
       - name: Pack artifacts
         id: pack_artifacts
         run: |
-          zip -j minigpt4-${{ env.BRANCH_NAME }}-${{ steps.commit.outputs.short }}-${{ steps.system-info.outputs.OS_TYPE }}-${{ steps.system-info.outputs.OS_NAME }}-${{ steps.system-info.outputs.OS_VERSION }}-${{ matrix.build }}-${{ steps.system-info.outputs.CPU_ARCH }}.zip ./build/libminigpt4.dylib ./build/bin/main ./minigpt4/minigpt4_library.py ./minigpt4/webui.py
+          zip -j minigpt4-${{ env.BRANCH_NAME }}-${{ steps.commit.outputs.short }}-${{ steps.system-info.outputs.OS_TYPE }}-${{ steps.system-info.outputs.OS_NAME }}-${{ steps.system-info.outputs.OS_VERSION }}-${{ matrix.build }}-${{ steps.system-info.outputs.CPU_ARCH }}.zip ./build/libminigpt4.dylib ./build/bin/main ./minigpt4/minigpt4_library.py ./minigpt4/webui.py ./minigpt4/requirements.txt
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -270,7 +270,7 @@ jobs:
       - name: Pack artifacts
         id: pack_artifacts
         run: |
-          7z a minigpt4-${{ env.BRANCH_NAME }}-${{ steps.commit.outputs.short }}-win-${{ matrix.build }}-x64.zip .\build\bin\Release\minigpt4.dll .\build\bin\Release\main.exe .\minigpt4\minigpt4_library.py .\minigpt4\webui.py
+          7z a minigpt4-${{ env.BRANCH_NAME }}-${{ steps.commit.outputs.short }}-win-${{ matrix.build }}-x64.zip .\build\bin\Release\minigpt4.dll .\build\bin\Release\main.exe .\minigpt4\minigpt4_library.py .\minigpt4\webui.py .\minigpt4\requirements.txt
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
