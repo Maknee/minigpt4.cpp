@@ -363,7 +363,7 @@ class MiniGPT4SharedLibrary:
 
         token = CHAR_PTR()
         self.panic_if_error(self.library.minigpt4_end_chat_image(ctx.ptr, ctypes.pointer(token), n_threads, temp, top_k, top_p, tfs_z, typical_p, repeat_last_n, repeat_penalty, alpha_presence, alpha_frequency, mirostat, mirostat_tau, mirostat_eta, penalize_nl))
-        return ctypes.cast(token, ctypes.c_char_p).value.decode('utf-8')
+        return ctypes.cast(token, ctypes.c_char_p).value.decode()
 
     def minigpt4_system_prompt(self, ctx: MiniGPT4Context, n_threads: int = 0):
         """
@@ -417,7 +417,7 @@ class MiniGPT4SharedLibrary:
 
         token = CHAR_PTR()
         self.panic_if_error(self.library.minigpt4_end_chat(ctx.ptr, ctypes.pointer(token), n_threads, temp, top_k, top_p, tfs_z, typical_p, repeat_last_n, repeat_penalty, alpha_presence, alpha_frequency, mirostat, mirostat_tau, mirostat_eta, penalize_nl))
-        return ctypes.cast(token, ctypes.c_char_p).value.decode('utf-8')
+        return ctypes.cast(token, ctypes.c_char_p).value.decode()
 
     def minigpt4_reset_chat(self, ctx: MiniGPT4Context):
         """
@@ -498,7 +498,7 @@ class MiniGPT4SharedLibrary:
             str: Error string.
         """
 
-        return self.library.minigpt4_error_code_to_string(error_code).decode('utf-8')
+        return self.library.minigpt4_error_code_to_string(error_code).decode()
 
     def minigpt4_quantize_model(self, in_path: str, out_path: str, data_type: DataType):
         """
