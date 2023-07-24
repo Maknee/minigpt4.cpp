@@ -299,5 +299,5 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "*.zip"
+          artifacts: "./artifact/*.zip"
           prerelease: true
