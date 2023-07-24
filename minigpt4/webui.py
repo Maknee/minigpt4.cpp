@@ -16,8 +16,7 @@ article = """<div style='display:flex; gap: 0.25rem; '><a href='https://github.c
 """
 image_ready = False
 
-global minigpt4_chatbot
-minigpt4_chatbot: minigpt4_library.MiniGPT4ChatBot
+minigpt4_chatbot: minigpt4_library.MiniGPT4ChatBot = None
 
 def user(message, history):
     history = history or []
