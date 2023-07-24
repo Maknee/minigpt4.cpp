@@ -291,13 +291,20 @@ jobs:
         id: download-artifact
         uses: actions/download-artifact@v3
 
+      - name: Display structure of downloaded files
+        run: ls -R
+
       - name: Get commit hash
         id: commit
         uses: pr-mpt/actions-commit-hash@v2
 
       - name: Create release
         id: create_release
-        uses: ncipollo/release-action@v1
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          artifacts: "./artifact/*.zip"
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
           prerelease: true
+          title: "Development Build"
+          files: |
+            artifact/*.zip
