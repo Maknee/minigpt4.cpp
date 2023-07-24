@@ -14,6 +14,7 @@ title = """<h1 align="center">MiniGPT-4.cpp Demo</h1>"""
 description = """<h3>This is the demo of MiniGPT-4 with ggml (cpu only!). Upload your images and start chatting!</h3>"""
 article = """<div style='display:flex; gap: 0.25rem; '><a href='https://github.com/Vision-CAIR/MiniGPT-4'><img src='https://img.shields.io/badge/Github-Code-blue'></a></div>
 """
+image_ready = False
 
 global minigpt4_chatbot
 minigpt4_chatbot: minigpt4_library.MiniGPT4ChatBot
@@ -26,6 +27,9 @@ def user(message, history):
 
 def chat(history, limit: int = 1024, temp: float = 0.8, top_k: int = 40, top_p: float = 0.9, repeat_penalty: float = 1.1):
     history = history or []
+
+    if not image_ready:
+        return "Please upload an image first.", history
 
     message = history[-1][0]
 
@@ -43,15 +47,19 @@ def chat(history, limit: int = 1024, temp: float = 0.8, top_k: int = 40, top_p: 
         yield history, history
 
 def clear_state(history, chat_message, image):
+    global image_ready
     history = []
     minigpt4_chatbot.reset_chat()
+    image_ready = False
     return history, gr.update(value=None, interactive=True), gr.update(placeholder='Upload image first', interactive=False), gr.update(value="Upload & Start Chat", interactive=True)
 
 def upload_image(image, history):
+    global image_ready
     if image is None:
         return None, None, gr.update(interactive=True), history
     history = []
     minigpt4_chatbot.upload_image(image.convert('RGB'))
+    image_ready = True
     return gr.update(interactive=False), gr.update(interactive=True, placeholder='Type and press Enter'), gr.update(value="Start Chatting", interactive=False), history
 
 def start(share: bool):
