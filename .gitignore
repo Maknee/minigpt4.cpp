@@ -423,3 +423,9 @@ models/*
 __pycache__
 .idea
 Makefile
+
+# Compiled files
+*.dylib
+*.so 
+*.bin
+*.dll
