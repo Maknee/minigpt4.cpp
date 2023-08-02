@@ -643,7 +643,12 @@ class MiniGPT4ChatBot:
             self.library.minigpt4_begin_chat(self.ctx, message, self.n_threads)
             chat = ''
             for _ in range(limit):
-                token = self.library.minigpt4_end_chat(self.ctx, self.n_threads, temp, top_k, top_p, tfs_z, typical_p, repeat_last_n, repeat_penalty, alpha_presence, alpha_frequency, mirostat, mirostat_tau, mirostat_eta, penalize_nl)
+                try:
+                    token = self.library.minigpt4_end_chat(self.ctx, self.n_threads, temp, top_k, top_p, tfs_z, typical_p, repeat_last_n, repeat_penalty, alpha_presence, alpha_frequency, mirostat, mirostat_tau, mirostat_eta, penalize_nl)
+                except KeyboardInterrupt:
+                    break
+                except Exception as exception:
+                    raise exception
                 chat += token
                 if self.library.minigpt4_contains_eos_token(token):
                     continue
@@ -762,7 +767,12 @@ if __name__ == "__main__":
         library.minigpt4_begin_chat(ctx, prompt, n_threads)
         chat  = ''
         while True:
-            token = library.minigpt4_end_chat(ctx, n_threads)
+            try:
+                token = library.minigpt4_end_chat(ctx, n_threads)
+            except KeyboardInterrupt:
+                break
+            except Exception as exception:
+                raise exception
             chat += token
             if library.minigpt4_contains_eos_token(token):
                 continue
